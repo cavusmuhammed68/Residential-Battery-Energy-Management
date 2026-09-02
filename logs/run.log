@@ -1,0 +1,131 @@
+[2026-09-02 16:44:01] INFO     dt_aampc: ========================================================
+[2026-09-02 16:44:01] INFO     dt_aampc:  DT-AAMPC :  Digital-Twin Attention-Augmented Adaptive  
+[2026-09-02 16:44:01] INFO     dt_aampc:              Model Predictive Control for Residential  
+[2026-09-02 16:44:01] INFO     dt_aampc:              Battery Energy Management                
+[2026-09-02 16:44:01] INFO     dt_aampc: ========================================================
+[2026-09-02 16:44:01] INFO     dt_aampc: Base directory : C:\Users\nfpm5\Downloads\Batteries_MDPI
+[2026-09-02 16:44:01] INFO     dt_aampc: Results dir    : C:\Users\nfpm5\Downloads\Batteries_MDPI\results
+[2026-09-02 16:44:01] INFO     dt_aampc: Torch available: True | Device: cpu
+[2026-09-02 16:44:01] INFO     dt_aampc: === STAGE 1/6: Data loading ===
+[2026-09-02 16:44:01] INFO     dt_aampc: Reading raw CSV from C:\Users\nfpm5\Downloads\Batteries_MDPI\HomeC_augmented.csv
+[2026-09-02 16:44:25] INFO     dt_aampc: Cleaned dataframe shape: (503910, 40)
+[2026-09-02 16:44:26] INFO     dt_aampc: Resampled to 15min -> shape (33594, 40)
+[2026-09-02 16:44:26] INFO     dt_aampc: === STAGE 2/6: Renewable synthesis ===
+[2026-09-02 16:44:26] INFO     dt_aampc: === STAGE 3/6: Scenario generation (6 novel stress tests) ===
+[2026-09-02 16:44:26] INFO     dt_aampc:   Scenario 'Heatwave AC Surge': 2016-01-01 05:00:00 -> 2016-01-07 04:45:00 (576 steps)
+[2026-09-02 16:44:26] INFO     dt_aampc:   Scenario 'Winter Storm Load Peak': 2016-01-07 05:00:00 -> 2016-01-13 04:45:00 (576 steps)
+[2026-09-02 16:44:26] INFO     dt_aampc:   Scenario 'Cloud-Cover Cascade': 2016-01-13 05:00:00 -> 2016-01-19 04:45:00 (576 steps)
+[2026-09-02 16:44:26] INFO     dt_aampc:   Scenario 'EV Fleet Overnight Charging': 2016-01-19 05:00:00 -> 2016-01-25 04:45:00 (576 steps)
+[2026-09-02 16:44:26] INFO     dt_aampc:   Scenario 'Islanded Microgrid Fault Ride-Through': 2016-01-25 05:00:00 -> 2016-01-31 04:45:00 (576 steps)
+[2026-09-02 16:44:26] INFO     dt_aampc:   Scenario 'Solar Oversupply Curtailment': 2016-01-31 05:00:00 -> 2016-02-06 04:45:00 (576 steps)
+[2026-09-02 16:44:26] INFO     dt_aampc: === STAGE 4/6: TAB-Net deep-learning forecaster training ===
+[2026-09-02 16:45:33] INFO     dt_aampc: TAB-Net epoch 01/40 | train 0.18907 | val 0.14972
+[2026-09-02 16:46:38] INFO     dt_aampc: TAB-Net epoch 02/40 | train 0.14955 | val 0.13404
+[2026-09-02 16:47:44] INFO     dt_aampc: TAB-Net epoch 03/40 | train 0.12998 | val 0.12306
+[2026-09-02 16:48:51] INFO     dt_aampc: TAB-Net epoch 04/40 | train 0.11937 | val 0.12305
+[2026-09-02 16:49:57] INFO     dt_aampc: TAB-Net epoch 05/40 | train 0.11403 | val 0.12314
+[2026-09-02 16:51:01] INFO     dt_aampc: TAB-Net epoch 06/40 | train 0.10975 | val 0.12633
+[2026-09-02 16:52:06] INFO     dt_aampc: TAB-Net epoch 07/40 | train 0.10635 | val 0.13250
+[2026-09-02 16:53:10] INFO     dt_aampc: TAB-Net epoch 08/40 | train 0.10286 | val 0.13294
+[2026-09-02 16:54:14] INFO     dt_aampc: TAB-Net epoch 09/40 | train 0.09938 | val 0.13550
+[2026-09-02 16:54:14] INFO     dt_aampc: Early stopping at epoch 9
+[2026-09-02 16:54:14] INFO     dt_aampc: === STAGE 5/6: Closed-loop simulation (6 scenarios x 3 controllers x 5 Monte-Carlo seeds) ===
+[2026-09-02 16:54:14] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='DT-AAMPC (Proposed)' (twin=True) seed=0
+[2026-09-02 16:54:59] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='DT-AAMPC (Proposed)' (twin=True) seed=1
+[2026-09-02 16:55:49] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='DT-AAMPC (Proposed)' (twin=True) seed=2
+[2026-09-02 16:56:35] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='DT-AAMPC (Proposed)' (twin=True) seed=3
+[2026-09-02 16:57:16] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='DT-AAMPC (Proposed)' (twin=True) seed=4
+[2026-09-02 16:57:59] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='PID Droop' (twin=False) seed=0
+[2026-09-02 16:58:21] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='PID Droop' (twin=False) seed=1
+[2026-09-02 16:58:45] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='PID Droop' (twin=False) seed=2
+[2026-09-02 16:59:07] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='PID Droop' (twin=False) seed=3
+[2026-09-02 16:59:29] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='PID Droop' (twin=False) seed=4
+[2026-09-02 16:59:52] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='Classical MPC (Naive Forecast)' (twin=False) seed=0
+[2026-09-02 17:00:27] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='Classical MPC (Naive Forecast)' (twin=False) seed=1
+[2026-09-02 17:00:57] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='Classical MPC (Naive Forecast)' (twin=False) seed=2
+[2026-09-02 17:01:26] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='Classical MPC (Naive Forecast)' (twin=False) seed=3
+[2026-09-02 17:01:55] INFO     dt_aampc:   Running scenario='Heatwave AC Surge' controller='Classical MPC (Naive Forecast)' (twin=False) seed=4
+[2026-09-02 17:02:23] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='DT-AAMPC (Proposed)' (twin=True) seed=0
+[2026-09-02 17:02:53] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='DT-AAMPC (Proposed)' (twin=True) seed=1
+[2026-09-02 17:03:25] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='DT-AAMPC (Proposed)' (twin=True) seed=2
+[2026-09-02 17:03:55] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='DT-AAMPC (Proposed)' (twin=True) seed=3
+[2026-09-02 17:04:25] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='DT-AAMPC (Proposed)' (twin=True) seed=4
+[2026-09-02 17:04:54] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='PID Droop' (twin=False) seed=0
+[2026-09-02 17:05:16] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='PID Droop' (twin=False) seed=1
+[2026-09-02 17:05:36] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='PID Droop' (twin=False) seed=2
+[2026-09-02 17:05:56] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='PID Droop' (twin=False) seed=3
+[2026-09-02 17:06:14] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='PID Droop' (twin=False) seed=4
+[2026-09-02 17:06:25] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='Classical MPC (Naive Forecast)' (twin=False) seed=0
+[2026-09-02 17:06:46] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='Classical MPC (Naive Forecast)' (twin=False) seed=1
+[2026-09-02 17:07:07] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='Classical MPC (Naive Forecast)' (twin=False) seed=2
+[2026-09-02 17:07:27] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='Classical MPC (Naive Forecast)' (twin=False) seed=3
+[2026-09-02 17:07:49] INFO     dt_aampc:   Running scenario='Winter Storm Load Peak' controller='Classical MPC (Naive Forecast)' (twin=False) seed=4
+[2026-09-02 17:08:14] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='DT-AAMPC (Proposed)' (twin=True) seed=0
+[2026-09-02 17:08:45] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='DT-AAMPC (Proposed)' (twin=True) seed=1
+[2026-09-02 17:09:15] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='DT-AAMPC (Proposed)' (twin=True) seed=2
+[2026-09-02 17:09:46] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='DT-AAMPC (Proposed)' (twin=True) seed=3
+[2026-09-02 17:10:20] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='DT-AAMPC (Proposed)' (twin=True) seed=4
+[2026-09-02 17:10:51] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='PID Droop' (twin=False) seed=0
+[2026-09-02 17:11:11] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='PID Droop' (twin=False) seed=1
+[2026-09-02 17:11:35] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='PID Droop' (twin=False) seed=2
+[2026-09-02 17:11:57] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='PID Droop' (twin=False) seed=3
+[2026-09-02 17:12:20] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='PID Droop' (twin=False) seed=4
+[2026-09-02 17:12:44] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='Classical MPC (Naive Forecast)' (twin=False) seed=0
+[2026-09-02 17:13:13] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='Classical MPC (Naive Forecast)' (twin=False) seed=1
+[2026-09-02 17:13:39] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='Classical MPC (Naive Forecast)' (twin=False) seed=2
+[2026-09-02 17:14:05] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='Classical MPC (Naive Forecast)' (twin=False) seed=3
+[2026-09-02 17:14:30] INFO     dt_aampc:   Running scenario='Cloud-Cover Cascade' controller='Classical MPC (Naive Forecast)' (twin=False) seed=4
+[2026-09-02 17:14:55] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='DT-AAMPC (Proposed)' (twin=True) seed=0
+[2026-09-02 17:15:19] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='DT-AAMPC (Proposed)' (twin=True) seed=1
+[2026-09-02 17:15:44] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='DT-AAMPC (Proposed)' (twin=True) seed=2
+[2026-09-02 17:16:08] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='DT-AAMPC (Proposed)' (twin=True) seed=3
+[2026-09-02 17:16:29] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='DT-AAMPC (Proposed)' (twin=True) seed=4
+[2026-09-02 17:16:53] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='PID Droop' (twin=False) seed=0
+[2026-09-02 17:17:08] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='PID Droop' (twin=False) seed=1
+[2026-09-02 17:17:26] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='PID Droop' (twin=False) seed=2
+[2026-09-02 17:17:45] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='PID Droop' (twin=False) seed=3
+[2026-09-02 17:18:03] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='PID Droop' (twin=False) seed=4
+[2026-09-02 17:18:18] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='Classical MPC (Naive Forecast)' (twin=False) seed=0
+[2026-09-02 17:18:40] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='Classical MPC (Naive Forecast)' (twin=False) seed=1
+[2026-09-02 17:19:00] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='Classical MPC (Naive Forecast)' (twin=False) seed=2
+[2026-09-02 17:19:21] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='Classical MPC (Naive Forecast)' (twin=False) seed=3
+[2026-09-02 17:19:42] INFO     dt_aampc:   Running scenario='EV Fleet Overnight Charging' controller='Classical MPC (Naive Forecast)' (twin=False) seed=4
+[2026-09-02 17:20:05] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='DT-AAMPC (Proposed)' (twin=True) seed=0
+[2026-09-02 17:20:30] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='DT-AAMPC (Proposed)' (twin=True) seed=1
+[2026-09-02 17:20:53] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='DT-AAMPC (Proposed)' (twin=True) seed=2
+[2026-09-02 17:21:19] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='DT-AAMPC (Proposed)' (twin=True) seed=3
+[2026-09-02 17:21:44] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='DT-AAMPC (Proposed)' (twin=True) seed=4
+[2026-09-02 17:22:09] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='PID Droop' (twin=False) seed=0
+[2026-09-02 17:22:27] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='PID Droop' (twin=False) seed=1
+[2026-09-02 17:22:48] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='PID Droop' (twin=False) seed=2
+[2026-09-02 17:23:06] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='PID Droop' (twin=False) seed=3
+[2026-09-02 17:23:26] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='PID Droop' (twin=False) seed=4
+[2026-09-02 17:23:47] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='Classical MPC (Naive Forecast)' (twin=False) seed=0
+[2026-09-02 17:24:10] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='Classical MPC (Naive Forecast)' (twin=False) seed=1
+[2026-09-02 17:24:33] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='Classical MPC (Naive Forecast)' (twin=False) seed=2
+[2026-09-02 17:24:56] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='Classical MPC (Naive Forecast)' (twin=False) seed=3
+[2026-09-02 17:25:24] INFO     dt_aampc:   Running scenario='Islanded Microgrid Fault Ride-Through' controller='Classical MPC (Naive Forecast)' (twin=False) seed=4
+[2026-09-02 17:25:57] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='DT-AAMPC (Proposed)' (twin=True) seed=0
+[2026-09-02 17:26:36] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='DT-AAMPC (Proposed)' (twin=True) seed=1
+[2026-09-02 17:27:19] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='DT-AAMPC (Proposed)' (twin=True) seed=2
+[2026-09-02 17:27:57] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='DT-AAMPC (Proposed)' (twin=True) seed=3
+[2026-09-02 17:28:39] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='DT-AAMPC (Proposed)' (twin=True) seed=4
+[2026-09-02 17:29:21] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='PID Droop' (twin=False) seed=0
+[2026-09-02 17:29:39] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='PID Droop' (twin=False) seed=1
+[2026-09-02 17:29:54] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='PID Droop' (twin=False) seed=2
+[2026-09-02 17:30:15] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='PID Droop' (twin=False) seed=3
+[2026-09-02 17:30:32] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='PID Droop' (twin=False) seed=4
+[2026-09-02 17:30:50] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='Classical MPC (Naive Forecast)' (twin=False) seed=0
+[2026-09-02 17:31:20] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='Classical MPC (Naive Forecast)' (twin=False) seed=1
+[2026-09-02 17:31:51] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='Classical MPC (Naive Forecast)' (twin=False) seed=2
+[2026-09-02 17:32:23] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='Classical MPC (Naive Forecast)' (twin=False) seed=3
+[2026-09-02 17:32:53] INFO     dt_aampc:   Running scenario='Solar Oversupply Curtailment' controller='Classical MPC (Naive Forecast)' (twin=False) seed=4
+[2026-09-02 17:33:24] INFO     dt_aampc: === STAGE 6/6: Figure generation ===
+[2026-09-02 17:33:44] INFO     dt_aampc: Experiment complete. 8 figures written to C:\Users\nfpm5\Downloads\Batteries_MDPI\results\figures
+[2026-09-02 17:33:44] INFO     dt_aampc: Reading raw CSV from C:\Users\nfpm5\Downloads\Batteries_MDPI\HomeC_augmented.csv
+[2026-09-02 17:34:07] INFO     dt_aampc: Cleaned dataframe shape: (503910, 40)
+[2026-09-02 17:34:08] INFO     dt_aampc: Resampled to 15min -> shape (33594, 40)
+[2026-09-02 17:34:08] WARNING  dt_aampc: Horizon sensitivity sweep skipped due to: too many values to unpack (expected 4)
+[2026-09-02 17:34:08] INFO     dt_aampc: Report written to: C:\Users\nfpm5\Downloads\Batteries_MDPI\results\REPORT.md
+[2026-09-02 17:34:08] INFO     dt_aampc: Total wall-clock time: 3006.6 s (50.11 min)
+[2026-09-02 17:34:08] INFO     dt_aampc: Done. See C:\Users\nfpm5\Downloads\Batteries_MDPI\results for all figures/tables.
